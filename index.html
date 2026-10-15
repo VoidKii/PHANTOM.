@@ -25,7 +25,10 @@
 .camera-preview-frame video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transform:scaleX(-1);opacity:.93}
 #camMarks{position:absolute;inset:0;width:100%;height:100%;transform:scaleX(-1)}
 .camera-hint{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;background:rgba(4,8,16,.34);text-align:center;color:#c9eaff}
-.camera-hint.hidden{display:none}.camera-hint strong{font:9px var(--mono);letter-spacing:.1em}.camera-hint small{font:7px var(--mono);letter-spacing:.05em;color:#8ca5c2}.reticle{position:absolute;top:50%;left:50%;width:min(62vh,490px);height:min(62vh,490px);transform:translate(-50%,-50%);border:1px solid rgba(103,171,230,.09);border-radius:50%;box-shadow:0 0 0 28px rgba(84,152,215,.018),0 0 0 60px rgba(84,152,215,.014)}.reticle:before,.reticle:after{content:"";position:absolute;inset:8%;border:1px dashed rgba(112,182,239,.12);border-radius:50%;animation:spin 65s linear infinite}.reticle:after{inset:20%;border-style:solid;border-color:rgba(163,139,255,.08);animation-direction:reverse;animation-duration:42s}.crosshair{position:absolute;top:50%;left:50%;width:min(78vh,620px);height:min(78vh,620px);transform:translate(-50%,-50%);opacity:.22;background:linear-gradient(90deg,transparent calc(50% - .5px),rgba(105,168,225,.32) 50%,transparent calc(50% + .5px)),linear-gradient(0deg,transparent calc(50% - .5px),rgba(105,168,225,.32) 50%,transparent calc(50% + .5px));mask-image:radial-gradient(circle,transparent 0%,#000 65%,transparent 73%)}
+.camera-hint.hidden{display:none}.camera-hint strong{font:9px var(--mono);letter-spacing:.1em}.camera-hint small{font:7px var(--mono);letter-spacing:.05em;color:#8ca5c2}
+.camera-meta{display:grid;grid-template-columns:1fr 1fr;gap:6px 9px;padding:8px 9px 9px;background:rgba(5,10,18,.95);border-top:1px solid rgba(122,245,255,.12)}
+.camera-meta>div{min-width:0;display:flex;flex-direction:column;gap:3px}.camera-meta small{font:7px var(--mono);letter-spacing:.12em;color:#5f7794}.camera-meta strong{font:8px var(--mono);letter-spacing:.04em;color:#d9edff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.camera-expression-detail{grid-column:1/-1;color:#6fbecb;font:7px var(--mono);letter-spacing:.02em;line-height:1.5;white-space:normal;overflow-wrap:anywhere}.reticle{position:absolute;top:50%;left:50%;width:min(62vh,490px);height:min(62vh,490px);transform:translate(-50%,-50%);border:1px solid rgba(103,171,230,.09);border-radius:50%;box-shadow:0 0 0 28px rgba(84,152,215,.018),0 0 0 60px rgba(84,152,215,.014)}.reticle:before,.reticle:after{content:"";position:absolute;inset:8%;border:1px dashed rgba(112,182,239,.12);border-radius:50%;animation:spin 65s linear infinite}.reticle:after{inset:20%;border-style:solid;border-color:rgba(163,139,255,.08);animation-direction:reverse;animation-duration:42s}.crosshair{position:absolute;top:50%;left:50%;width:min(78vh,620px);height:min(78vh,620px);transform:translate(-50%,-50%);opacity:.22;background:linear-gradient(90deg,transparent calc(50% - .5px),rgba(105,168,225,.32) 50%,transparent calc(50% + .5px)),linear-gradient(0deg,transparent calc(50% - .5px),rgba(105,168,225,.32) 50%,transparent calc(50% + .5px));mask-image:radial-gradient(circle,transparent 0%,#000 65%,transparent 73%)}
 .core-label{position:absolute;top:calc(50% + min(31vh,245px));left:50%;transform:translateX(-50%);font:10px var(--mono);letter-spacing:.22em;color:#8299b9;white-space:nowrap;text-align:center}.core-label span{display:block;color:#4a637f;font-size:8px;margin-top:7px;letter-spacing:.17em}.core-coords{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);font:9px var(--mono);color:#475d79;letter-spacing:.12em;white-space:nowrap}
 .corner{position:absolute;width:18px;height:18px;border-color:rgba(113,197,255,.38);border-style:solid;opacity:.65}.c1{top:12px;left:12px;border-width:1px 0 0 1px}.c2{top:12px;right:12px;border-width:1px 1px 0 0}.c3{bottom:12px;left:12px;border-width:0 0 1px 1px}.c4{bottom:12px;right:12px;border-width:0 1px 1px 0}
 .gesture-card{border:1px solid rgba(139,173,219,.1);padding:12px;border-radius:11px;background:rgba(8,12,22,.38);transition:.2s}.gesture-card.active{border-color:rgba(122,245,255,.5);background:rgba(34,100,132,.13);box-shadow:inset 0 0 18px rgba(87,208,255,.035)}.gesture-row{display:flex;align-items:center;gap:10px}.gesture-art{width:35px;height:35px;border-radius:9px;display:grid;place-items:center;background:rgba(40,70,111,.18);border:1px solid rgba(124,180,235,.13);color:#9eddf9;font-size:19px;flex-shrink:0}.gesture-card strong{font-size:11px;font-weight:600;display:block}.gesture-card small{font:9px var(--mono);color:#627691;display:block;margin-top:4px}.gesture-card p{font-size:10px;line-height:1.55;color:#71829b;margin:10px 0 0}.gesture-list{display:grid;gap:7px;max-height:calc(100vh - 375px);min-height:120px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(122,245,255,.22) transparent}.gesture-list{display:grid;gap:7px;max-height:calc(100vh - 375px);min-height:120px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(122,245,255,.22) transparent}
@@ -46,7 +49,7 @@
 <canvas id="field" aria-label="Animated PHANTOM particle field"></canvas><div class="grid"></div><div class="scan"></div>
 <div class="app">
 <header class="topbar">
-  <div class="brand"><div class="brand-mark" aria-hidden="true"></div><div><div class="brand-name">PHANTOM</div><div class="brand-sub">GESTURE INTERFACE / 006.1</div></div></div>
+  <div class="brand"><div class="brand-mark" aria-hidden="true"></div><div><div class="brand-name">PHANTOM</div><div class="brand-sub">GESTURE INTERFACE / 007</div></div></div>
   <div class="top-center"><span class="live-dot"></span><span>LOCAL PROCESSING</span><span style="color:#354760">/</span><span>VISION CORE</span></div>
   <div class="top-right"><div id="statusPill" class="status-pill"><span class="live-dot"></span><span id="statusText">SYSTEM STANDBY</span></div><button id="helpBtn" class="icon-btn" aria-label="Show controls" title="Controls"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 1 1 4.6 1.3c-1 1.1-2.2 1.3-2.2 3"/><path d="M12 17.2h.01"/></svg></button></div>
 </header>
@@ -68,7 +71,12 @@
       <div class="camera-preview-frame">
         <video id="cam" autoplay muted playsinline></video>
         <canvas id="camMarks" aria-hidden="true"></canvas>
-        <div id="cameraHint" class="camera-hint"><strong>PLACE HAND HERE</strong><small>SHOW FULL PALM · GOOD LIGHT</small></div>
+        <div id="cameraHint" class="camera-hint"><strong>STEP BACK FOR FULL BODY</strong><small>KEEP HEAD + FEET IN FRAME · GOOD LIGHT</small></div>
+      </div>
+      <div class="camera-meta">
+        <div><small>BODY</small><strong id="poseState">SEARCHING</strong></div>
+        <div><small>EXPRESSION</small><strong id="faceExpression">NO FACE</strong></div>
+        <div class="camera-expression-detail" id="faceExpressionDetail">Waiting for face</div>
       </div>
     </div>
   </section>
@@ -117,7 +125,11 @@ const statusText = $('statusText');
 const errorLine = $('errorLine');
 
 let W = 0, H = 0, dpr = 1, particles = [];
-let cameraStream = null, handLandmarker = null, cameraActive = false, mouseMode = false;
+let cameraStream = null, handLandmarker = null, poseLandmarker = null, faceLandmarker = null;
+let visionTasks = null, visionFiles = null, cameraActive = false, mouseMode = false;
+let poseLandmarksNow = null, faceLandmarksNow = null, faceBlendScores = {};
+let bodyDetected = false, faceDetected = false, lastPoseAt = 0, lastFaceAt = 0;
+let faceExpressionLabel = 'NO FACE', faceExpressionDetail = 'Waiting for face';
 let lastVideoTime = -1, lastDetectAt = 0, detected = false, handMode = 'STANDBY';
 let handPoint = {x: 0.5, y: 0.5}, smoothPoint = {x: 0.5, y: 0.5}, pointerPoint = {x: 0.5, y: 0.5};
 // Tracking stabilizers: landmark filtering, gesture hysteresis and brief hand-loss grace.
@@ -328,6 +340,8 @@ async function loadHandTracker() {
           ...options, baseOptions: { modelAssetPath: model, delegate: 'CPU' }
         });
       }
+      visionTasks = vision;
+      visionFiles = files;
       return;
     } catch (error) {
       lastError = error;
@@ -339,6 +353,49 @@ async function loadHandTracker() {
   throw new Error('VISION_INIT_FAILED: ' + detail.slice(0, 220));
 }
 function humanError(error) {
+async function createVisionTask(TaskClass, modelAssetPath, options) {
+  try {
+    return await TaskClass.createFromOptions(visionFiles, {
+      ...options, baseOptions: {modelAssetPath, delegate:'GPU'}
+    });
+  } catch (gpuError) {
+    return await TaskClass.createFromOptions(visionFiles, {
+      ...options, baseOptions: {modelAssetPath, delegate:'CPU'}
+    });
+  }
+}
+async function loadBodyAndFaceTrackers() {
+  if (!visionTasks || !visionFiles) throw new Error('VISION_RUNTIME_NOT_READY');
+  const errors=[];
+  if (!poseLandmarker) {
+    try {
+      poseLandmarker=await createVisionTask(
+        visionTasks.PoseLandmarker,
+        'https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task',
+        {runningMode:'VIDEO',numPoses:1,minPoseDetectionConfidence:.35,minPosePresenceConfidence:.35,minTrackingConfidence:.35}
+      );
+      logEvent('Body model ready','POSE LANDMARKING ENABLED');
+    } catch(error) {
+      errors.push('body: '+(error.message||String(error)));
+      console.warn('PHANTOM body model failed',error);
+    }
+  }
+  if (!faceLandmarker) {
+    try {
+      faceLandmarker=await createVisionTask(
+        visionTasks.FaceLandmarker,
+        'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task',
+        {runningMode:'VIDEO',numFaces:1,outputFaceBlendshapes:true,minFaceDetectionConfidence:.35,minFacePresenceConfidence:.35,minTrackingConfidence:.35}
+      );
+      logEvent('Face model ready','EXPRESSION BLENDSHAPES ENABLED');
+    } catch(error) {
+      errors.push('face: '+(error.message||String(error)));
+      console.warn('PHANTOM face model failed',error);
+    }
+  }
+  return errors;
+}
+
   if (error && (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError')) return 'Camera permission was blocked. Allow camera access in your browser, then activate again.';
   if (error && error.name === 'NotFoundError') return 'No webcam was found. You can use mouse mode instead.';
   if (error && error.name === 'NotReadableError') return 'The webcam is busy in another app. Close the other app and retry.';
@@ -362,18 +419,28 @@ async function startCamera() {
     $('cameraHint').classList.remove('hidden');
     $('cameraHint').querySelector('strong').textContent='LOADING VISION';
     if (!handLandmarker) await loadHandTracker();
+    let bodyFaceErrors=[];
+    try { bodyFaceErrors=await loadBodyAndFaceTrackers(); }
+    catch(error) { bodyFaceErrors.push(error.message||String(error)); }
     cameraActive = true; mouseMode = false; detected = false; lastVideoTime = -1; startAt = performance.now();
+    poseLandmarksNow=null; faceLandmarksNow=null; faceBlendScores={}; bodyDetected=false; faceDetected=false;
+    lastPoseAt=0; lastFaceAt=0; faceExpressionLabel='NO FACE'; faceExpressionDetail='Waiting for face';
     filteredLandmarks = [null,null]; candidateMode = ''; candidateModeFrames = 0; candidateModeSince = 0; handLostAt = 0; fingerExtensionState = [false,false,false,false]; pinchArmed = true; pinchReleaseFrames = 0; lastHandSampleAt = 0; handVelocity = {x:0,y:0}; twoHandsDetected = false; twoHandSpread = 0;
     handPoint = {x:.5,y:.5}; smoothPoint = {x:.5,y:.51};
     overlay.classList.add('hidden');
     activateBtn.disabled = false; overlayActivate.disabled = false; stopBtn.disabled = false;
     $('trackingVal').textContent = 'ON'; $('handCount').textContent = '00';
-    $('bottomHint').textContent = 'Show one hand to control powers, or both hands to expand the core.';
+    $('bottomHint').textContent = 'Step back to show head-to-feet; keep your face visible for expression tracking.';
     $('readoutTitle').textContent = 'Camera connected'; $('readoutSub').textContent = 'Searching for hand landmarks';
     $('modeBig').textContent = 'SEARCHING'; $('modeNote').textContent = 'Show your hand to begin';
     setStatus('CAMERA ACTIVE','ready');
     $('visionState').textContent='SEARCHING';
-    $('cameraHint').querySelector('strong').textContent='PLACE HAND HERE';
+    $('poseState').textContent=poseLandmarker?'SEARCHING':'MODEL OFFLINE';
+    $('faceExpression').textContent=faceLandmarker?'SEARCHING':'MODEL OFFLINE';
+    $('faceExpressionDetail').textContent=bodyFaceErrors.length?'Some body/face features unavailable':'Looking for body and face';
+    $('cameraHint').querySelector('strong').textContent='STEP BACK FOR FULL BODY';
+    $('cameraHint').querySelector('small').textContent='KEEP HEAD + FEET IN FRAME · GOOD LIGHT';
+    if (bodyFaceErrors.length) notify('Hand tracking is ready; body/face tracking may be limited. Check connection.');
     logEvent('Camera activated','LOCAL VISION STARTED');
     logEvent('Hand model ready','LANDMARK DETECTION ENABLED');
     notify('Camera active — show your hand to PHANTOM.');
