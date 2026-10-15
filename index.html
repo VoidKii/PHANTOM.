@@ -172,8 +172,8 @@ document.addEventListener('visibilitychange', () => { if (document.hidden && cam
 async function loadHandTracker() {
   setStatus('LOADING VISION');
   $('bottomHint').textContent = 'Loading the hand-tracking model…';
-  const vision = await import('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.22');
-  const files = await vision.FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.22/wasm');
+  const vision = await import('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.35');
+  const files = await vision.FilesetResolver.forVisionTasks('https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.35/wasm');
   const model = 'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task';
   try {
     handLandmarker = await vision.HandLandmarker.createFromOptions(files, {
@@ -193,7 +193,10 @@ function humanError(error) {
   if (error && (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError')) return 'Camera permission was blocked. Allow camera access in your browser, then activate again.';
   if (error && error.name === 'NotFoundError') return 'No webcam was found. You can use mouse mode instead.';
   if (error && error.name === 'NotReadableError') return 'The webcam is busy in another app. Close the other app and retry.';
-  return 'Could not start hand tracking. Check your internet connection and camera permission, or use mouse mode.';
+  if (error && error.message === 'CAMERA_API_UNAVAILABLE') return 'Camera access needs a secure HTTPS page. Open the GitHub Pages link, not a downloaded file.';
+  const detail = error && error.message ? String(error.message) : '';
+  if (detail.includes('Failed to fetch dynamically imported module') || detail.includes('Importing a module script failed')) return 'The hand-tracking library could not load. Check your internet connection, then refresh the page and try again.';
+  return 'Could not start hand tracking' + (detail ? ': ' + detail.slice(0, 180) : '. Check camera permission or try mouse mode.');
 }
 async function startCamera() {
   if (cameraActive) return;
