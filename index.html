@@ -46,7 +46,7 @@
 <canvas id="field" aria-label="Animated PHANTOM particle field"></canvas><div class="grid"></div><div class="scan"></div>
 <div class="app">
 <header class="topbar">
-  <div class="brand"><div class="brand-mark" aria-hidden="true"></div><div><div class="brand-name">PHANTOM</div><div class="brand-sub">GESTURE INTERFACE / 006</div></div></div>
+  <div class="brand"><div class="brand-mark" aria-hidden="true"></div><div><div class="brand-name">PHANTOM</div><div class="brand-sub">GESTURE INTERFACE / 006.1</div></div></div>
   <div class="top-center"><span class="live-dot"></span><span>LOCAL PROCESSING</span><span style="color:#354760">/</span><span>VISION CORE</span></div>
   <div class="top-right"><div id="statusPill" class="status-pill"><span class="live-dot"></span><span id="statusText">SYSTEM STANDBY</span></div><button id="helpBtn" class="icon-btn" aria-label="Show controls" title="Controls"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 1 1 4.6 1.3c-1 1.1-2.2 1.3-2.2 3"/><path d="M12 17.2h.01"/></svg></button></div>
 </header>
@@ -177,7 +177,7 @@ function setMode(mode, note) {
   $('modeBig').textContent = mode;
   $('modeNote').textContent = note;
   $('modeChip').textContent = 'MODE: ' + mode;
-  $('coreSub').textContent = mode === 'PINCH' ? 'PARTICLE GRAB LINKED' : mode === 'FIST' ? 'CORE COMPRESSION ACTIVE' : mode === 'OPEN HAND' ? 'FIELD VECTOR LINKED' : mode === 'POINT' ? 'PHOTON BEAM CHARGED' : mode === 'MOUSE' ? 'POINTER INPUT LINKED' : mode === 'TRACKING' ? 'HAND SIGNAL ACQUIRED' : 'AWAITING INPUT SIGNAL';
+  $('coreSub').textContent = mode === 'PINCH' ? 'PARTICLE GRAB LINKED' : mode === 'FIST' ? 'CORE COMPRESSION ACTIVE' : mode === 'OPEN HAND' ? 'FIELD VECTOR LINKED' : mode === 'POINT' ? 'PHOTON BEAM CHARGED' : mode === 'PORTAL' ? 'VORTEX GATE ACTIVE' : mode === 'SHIELD' ? 'ENERGY SHIELD ACTIVE' : mode === 'MOUSE' ? 'POINTER INPUT LINKED' : mode === 'TRACKING' ? 'HAND SIGNAL ACQUIRED' : 'AWAITING INPUT SIGNAL';
   $('gestureOpen').classList.toggle('active', mode === 'OPEN HAND' || mode === 'TRACKING');
   $('gesturePinch').classList.toggle('active', mode === 'PINCH');
   $('gestureFist').classList.toggle('active', mode === 'FIST');
@@ -749,6 +749,18 @@ function render(now) {
             p.x=focusX-dx/dist*76; p.y=focusY-dy/dist*76;
             p.vx+=-dy/dist*4.5; p.vy+=dx/dist*4.5;
             p.throwFrames=Math.max(p.throwFrames,20);
+          }
+        }
+        else if (handMode === 'PORTAL') {
+          // Vortex pulls nearby particles into a rotating gate and ejects them at its rim.
+          p.vx += (-dy/dist)*.18 - (dx/dist)*.025;
+          p.vy += (dx/dist)*.18 - (dy/dist)*.025;
+          if (dist < 18) {
+            p.x = focusX - dx/dist*76;
+            p.y = focusY - dy/dist*76;
+            p.vx += (-dy/dist)*4.4;
+            p.vy += (dx/dist)*4.4;
+            p.throwFrames = Math.max(p.throwFrames,20);
           }
         }
         else if (handMode === 'SHIELD') {
