@@ -21,7 +21,7 @@
 .center{position:relative;display:flex;align-items:center;justify-content:center;min-height:0}.center-hud{position:absolute;inset:0;pointer-events:none}.reticle{position:absolute;top:50%;left:50%;width:min(62vh,490px);height:min(62vh,490px);transform:translate(-50%,-50%);border:1px solid rgba(103,171,230,.09);border-radius:50%;box-shadow:0 0 0 28px rgba(84,152,215,.018),0 0 0 60px rgba(84,152,215,.014)}.reticle:before,.reticle:after{content:"";position:absolute;inset:8%;border:1px dashed rgba(112,182,239,.12);border-radius:50%;animation:spin 65s linear infinite}.reticle:after{inset:20%;border-style:solid;border-color:rgba(163,139,255,.08);animation-direction:reverse;animation-duration:42s}.crosshair{position:absolute;top:50%;left:50%;width:min(78vh,620px);height:min(78vh,620px);transform:translate(-50%,-50%);opacity:.22;background:linear-gradient(90deg,transparent calc(50% - .5px),rgba(105,168,225,.32) 50%,transparent calc(50% + .5px)),linear-gradient(0deg,transparent calc(50% - .5px),rgba(105,168,225,.32) 50%,transparent calc(50% + .5px));mask-image:radial-gradient(circle,transparent 0%,#000 65%,transparent 73%)}
 .core-label{position:absolute;top:calc(50% + min(31vh,245px));left:50%;transform:translateX(-50%);font:10px var(--mono);letter-spacing:.22em;color:#8299b9;white-space:nowrap;text-align:center}.core-label span{display:block;color:#4a637f;font-size:8px;margin-top:7px;letter-spacing:.17em}.core-coords{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);font:9px var(--mono);color:#475d79;letter-spacing:.12em;white-space:nowrap}
 .corner{position:absolute;width:18px;height:18px;border-color:rgba(113,197,255,.38);border-style:solid;opacity:.65}.c1{top:12px;left:12px;border-width:1px 0 0 1px}.c2{top:12px;right:12px;border-width:1px 1px 0 0}.c3{bottom:12px;left:12px;border-width:0 0 1px 1px}.c4{bottom:12px;right:12px;border-width:0 1px 1px 0}
-.gesture-card{border:1px solid rgba(139,173,219,.1);padding:12px;border-radius:11px;background:rgba(8,12,22,.38);transition:.2s}.gesture-card.active{border-color:rgba(122,245,255,.5);background:rgba(34,100,132,.13);box-shadow:inset 0 0 18px rgba(87,208,255,.035)}.gesture-row{display:flex;align-items:center;gap:10px}.gesture-art{width:35px;height:35px;border-radius:9px;display:grid;place-items:center;background:rgba(40,70,111,.18);border:1px solid rgba(124,180,235,.13);color:#9eddf9;font-size:19px;flex-shrink:0}.gesture-card strong{font-size:11px;font-weight:600;display:block}.gesture-card small{font:9px var(--mono);color:#627691;display:block;margin-top:4px}.gesture-card p{font-size:10px;line-height:1.55;color:#71829b;margin:10px 0 0}
+.gesture-card{border:1px solid rgba(139,173,219,.1);padding:12px;border-radius:11px;background:rgba(8,12,22,.38);transition:.2s}.gesture-card.active{border-color:rgba(122,245,255,.5);background:rgba(34,100,132,.13);box-shadow:inset 0 0 18px rgba(87,208,255,.035)}.gesture-row{display:flex;align-items:center;gap:10px}.gesture-art{width:35px;height:35px;border-radius:9px;display:grid;place-items:center;background:rgba(40,70,111,.18);border:1px solid rgba(124,180,235,.13);color:#9eddf9;font-size:19px;flex-shrink:0}.gesture-card strong{font-size:11px;font-weight:600;display:block}.gesture-card small{font:9px var(--mono);color:#627691;display:block;margin-top:4px}.gesture-card p{font-size:10px;line-height:1.55;color:#71829b;margin:10px 0 0}.gesture-list{display:grid;gap:7px;max-height:calc(100vh - 375px);min-height:120px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(122,245,255,.22) transparent}
 .bottom{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);gap:14px}.bottom-left{display:flex;align-items:center;gap:13px;font:9px var(--mono);letter-spacing:.07em;color:#647791;min-width:0}.mode-chip{padding:7px 9px;border-radius:7px;background:rgba(62,119,170,.1);border:1px solid rgba(95,160,222,.17);color:#9ab9da;white-space:nowrap}.command-hint{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bottom-actions{display:flex;gap:8px;align-items:center}.btn{border:1px solid rgba(126,166,213,.2);border-radius:9px;padding:11px 15px;background:rgba(16,25,41,.75);color:#d4e4f8;font:10px var(--mono);letter-spacing:.06em;display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;transition:transform .18s,border-color .18s,background .18s;white-space:nowrap}.btn:hover{border-color:rgba(122,245,255,.55);background:rgba(20,50,68,.72);transform:translateY(-1px)}.btn:disabled{opacity:.45;cursor:wait;transform:none}.btn.primary{border-color:rgba(122,245,255,.48);color:#03131b;background:linear-gradient(110deg,#73e9f6,#9bafff);font-weight:800;box-shadow:0 0 22px rgba(93,200,244,.13)}.btn.primary:hover{background:linear-gradient(110deg,#a1f4ff,#b8c2ff)}.btn.danger{color:#ff9ab0;border-color:rgba(255,108,140,.24)}.btn.ghost{background:transparent}
 .overlay{position:fixed;inset:0;z-index:8;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 50% 43%,rgba(13,27,46,.2),rgba(4,5,10,.9) 74%);backdrop-filter:blur(5px);transition:opacity .35s,visibility .35s}.overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}.welcome{width:min(540px,100%);text-align:center;padding:34px 30px 28px;background:linear-gradient(155deg,rgba(14,22,37,.91),rgba(6,9,16,.92));border:1px solid rgba(123,193,239,.22);border-radius:22px;box-shadow:0 35px 120px rgba(0,0,0,.48),0 0 60px rgba(55,149,213,.06);position:relative;overflow:hidden}.welcome:before{content:"";position:absolute;top:0;left:15%;width:70%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--violet),transparent)}.welcome-logo{display:flex;align-items:center;justify-content:center;gap:13px;margin-bottom:22px}.welcome .brand-mark{width:44px;height:44px;border-radius:13px}.eyebrow{font:10px var(--mono);letter-spacing:.2em;color:#7fa6c9}.welcome h1{margin:0;font-size:clamp(35px,7vw,57px);line-height:1.04;letter-spacing:.19em;font-weight:800;background:linear-gradient(100deg,#f0f8ff 12%,#7af5ff 55%,#9c8aff 95%);background-clip:text;-webkit-background-clip:text;color:transparent}.welcome .sub{margin:16px auto 0;max-width:390px;color:#97a9c2;font-size:13px;line-height:1.75}.welcome-actions{display:flex;justify-content:center;gap:9px;margin-top:25px;flex-wrap:wrap}.privacy{display:flex;justify-content:center;align-items:center;gap:7px;color:#5f7791;font:9px var(--mono);margin-top:21px;letter-spacing:.05em}.privacy svg{color:#70e9c3}.tiny-divider{width:36px;height:1px;background:var(--line);margin:23px auto 17px}.welcome-foot{font:9px var(--mono);letter-spacing:.12em;color:#465a73}.error-line{display:none;margin:18px 0 0;color:#ff9bb3;font-size:11px;line-height:1.6}.error-line.show{display:block}
 .toast{position:fixed;z-index:12;bottom:93px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:rgba(12,20,34,.95);border:1px solid rgba(122,245,255,.22);border-radius:10px;padding:12px 16px;color:#dbeaff;font:10px var(--mono);letter-spacing:.03em;box-shadow:0 12px 35px rgba(0,0,0,.35);transition:.25s;max-width:calc(100% - 30px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}
@@ -38,7 +38,7 @@
 <video id="cam" autoplay muted playsinline></video>
 <div class="app">
 <header class="topbar">
-  <div class="brand"><div class="brand-mark" aria-hidden="true"></div><div><div class="brand-name">PHANTOM</div><div class="brand-sub">GESTURE INTERFACE / 004</div></div></div>
+  <div class="brand"><div class="brand-mark" aria-hidden="true"></div><div><div class="brand-name">PHANTOM</div><div class="brand-sub">GESTURE INTERFACE / 005</div></div></div>
   <div class="top-center"><span class="live-dot"></span><span>LOCAL PROCESSING</span><span style="color:#354760">/</span><span>VISION CORE</span></div>
   <div class="top-right"><div id="statusPill" class="status-pill"><span class="live-dot"></span><span id="statusText">SYSTEM STANDBY</span></div><button id="helpBtn" class="icon-btn" aria-label="Show controls" title="Controls"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 1 1 4.6 1.3c-1 1.1-2.2 1.3-2.2 3"/><path d="M12 17.2h.01"/></svg></button></div>
 </header>
@@ -60,7 +60,9 @@
     <section class="panel"><div class="panel-head"><span>GESTURE PROTOCOL</span><span style="color:#506a89">02</span></div><div class="panel-content gesture-list">
       <div class="gesture-card" id="gestureOpen"><div class="gesture-row"><div class="gesture-art">✋</div><div><strong>OPEN HAND</strong><small>FIELD CONTROL</small></div></div><p>Move your hand to steer the particle field through space.</p></div>
       <div class="gesture-card" id="gesturePinch"><div class="gesture-row"><div class="gesture-art">🤏</div><div><strong>PINCH</strong><small>ENERGY PULSE</small></div></div><p>Touch thumb and index finger to trigger a concentrated pulse.</p></div>
-      <div class="gesture-card" id="gestureFist"><div class="gesture-row"><div class="gesture-art">✊</div><div><strong>FIST</strong><small>CORE COMPRESSION</small></div></div><p>Close your hand to draw particles inward toward the core.</p></div>
+      <div class="gesture-card" id="gestureFist"><div class="gesture-row"><div class="gesture-art">✊</div><div><strong>FIST</strong><small>CORE COMPRESSION</small></div></div><p>Close your hand to draw particles inward toward the core, then open to release a burst.</p></div>
+      <div class="gesture-card" id="gesturePoint"><div class="gesture-row"><div class="gesture-art">☞</div><div><strong>POINT</strong><small>PHOTON BEAM</small></div></div><p>Extend only your index finger to fire a beam that pushes particles forward.</p></div>
+      <div class="gesture-card" id="gestureTwo"><div class="gesture-row"><div class="gesture-art">🙌</div><div><strong>TWO HANDS</strong><small>CORE EXPANSION</small></div></div><p>Show both hands and move them apart to expand the field between them.</p></div>
     </div></section>
     <section class="panel"><div class="panel-head"><span>SESSION LOG</span><span style="color:#506a89">03</span></div><div class="panel-content" style="padding-top:5px;padding-bottom:5px" id="logList"><div class="note-line"><div class="mini-icon">·</div><div><strong>Interface loaded</strong><small>VISION CORE IDLE</small></div></div><div class="note-line"><div class="mini-icon">·</div><div><strong>Camera offline</strong><small>PERMISSION NOT REQUESTED</small></div></div></div></section>
   </aside>
@@ -68,7 +70,7 @@
 <footer class="bottom"><div class="bottom-left"><span class="mode-chip" id="modeChip">MODE: STANDBY</span><span class="command-hint" id="bottomHint">Initialize the system to begin gesture tracking.</span></div><div class="bottom-actions"><button id="mouseBtn" class="btn ghost" title="Use the mouse instead of a camera">↗ MOUSE TEST</button><button id="stopBtn" class="btn danger" disabled>■ STOP CAMERA</button><button id="activateBtn" class="btn primary">✦ ACTIVATE SYSTEM</button></div></footer>
 </div>
 <div id="overlay" class="overlay"><div class="welcome">
-  <div class="welcome-logo"><div class="brand-mark"></div><span class="eyebrow">INTERACTIVE FIELD EXPERIMENT / 004</span></div>
+  <div class="welcome-logo"><div class="brand-mark"></div><span class="eyebrow">INTERACTIVE FIELD EXPERIMENT / 005</span></div>
   <h1>PHANTOM</h1>
   <p class="sub">A new interface between motion and light. Use your hand to shape a living field of particles in real time.</p>
   <div class="welcome-actions"><button id="overlayActivate" class="btn primary">✦ ACTIVATE WITH CAMERA</button><button id="overlayMouse" class="btn">↗ TRY MOUSE MODE</button></div>
@@ -97,9 +99,12 @@ let cameraStream = null, handLandmarker = null, cameraActive = false, mouseMode 
 let lastVideoTime = -1, lastDetectAt = 0, detected = false, handMode = 'STANDBY';
 let handPoint = {x: 0.5, y: 0.5}, smoothPoint = {x: 0.5, y: 0.5}, pointerPoint = {x: 0.5, y: 0.5};
 // Tracking stabilizers: landmark filtering, gesture hysteresis and brief hand-loss grace.
-let filteredLandmarks = null, candidateMode = '', candidateModeFrames = 0, handLostAt = 0;
+let filteredLandmarks = [null,null], candidateMode = '', candidateModeFrames = 0, handLostAt = 0;
 let candidateModeSince = 0, fingerExtensionState = [false,false,false,false];
 let pinchArmed = true, pinchReleaseFrames = 0;
+let previousHandPoint = {x:.5,y:.5}, handVelocity = {x:0,y:0}, lastHandSampleAt = 0;
+let secondHandPoint = {x:.5,y:.5}, twoHandPoint = {x:.5,y:.5}, twoHandSpread = 0, twoHandsDetected = false;
+let beamDirection = {x:1,y:0};
 let energy = 0.06, pulse = 0, pulseCount = 0, pulseWave = 0, fistStrength = 0;
 let startAt = 0, toastTimer = 0, lastLog = '';
 const particleTarget = () => Math.min(1450, Math.max(580, Math.floor((window.innerWidth * window.innerHeight) / 1050)));
@@ -119,7 +124,7 @@ function makeParticle(initial=false) {
   const a = rand(0,Math.PI*2), r = initial ? rand(10,Math.min(innerWidth,innerHeight)*0.48) : rand(0,Math.max(innerWidth,innerHeight)*0.7);
   const x = initial ? W/2 + Math.cos(a)*r : rand(0,W);
   const y = initial ? H*0.51 + Math.sin(a)*r : rand(0,H);
-  return {x,y,ox:x,oy:y,vx:rand(-.18,.18),vy:rand(-.18,.18),size:rand(.45,1.55),phase:rand(0,Math.PI*2),speed:rand(.15,.65),hue:Math.random(),alpha:rand(.24,.78)};
+  return {x,y,ox:x,oy:y,vx:rand(-.18,.18),vy:rand(-.18,.18),size:rand(.45,1.55),phase:rand(0,Math.PI*2),speed:rand(.15,.65),hue:Math.random(),alpha:rand(.24,.78),grabbed:false,grabDX:0,grabDY:0,throwFrames:0};
 }
 function setStatus(text, state='') {
   statusText.textContent = text;
@@ -149,10 +154,12 @@ function setMode(mode, note) {
   $('modeBig').textContent = mode;
   $('modeNote').textContent = note;
   $('modeChip').textContent = 'MODE: ' + mode;
-  $('coreSub').textContent = mode === 'PINCH' ? 'ENERGY PULSE ENGAGED' : mode === 'FIST' ? 'CORE COMPRESSION ACTIVE' : mode === 'OPEN HAND' ? 'FIELD VECTOR LINKED' : mode === 'MOUSE' ? 'POINTER INPUT LINKED' : mode === 'TRACKING' ? 'HAND SIGNAL ACQUIRED' : 'AWAITING INPUT SIGNAL';
+  $('coreSub').textContent = mode === 'PINCH' ? 'PARTICLE GRAB LINKED' : mode === 'FIST' ? 'CORE COMPRESSION ACTIVE' : mode === 'OPEN HAND' ? 'FIELD VECTOR LINKED' : mode === 'POINT' ? 'PHOTON BEAM CHARGED' : mode === 'MOUSE' ? 'POINTER INPUT LINKED' : mode === 'TRACKING' ? 'HAND SIGNAL ACQUIRED' : 'AWAITING INPUT SIGNAL';
   $('gestureOpen').classList.toggle('active', mode === 'OPEN HAND' || mode === 'TRACKING');
   $('gesturePinch').classList.toggle('active', mode === 'PINCH');
   $('gestureFist').classList.toggle('active', mode === 'FIST');
+  $('gesturePoint').classList.toggle('active', mode === 'POINT');
+  $('gestureTwo').classList.toggle('active', mode === 'TWO HANDS');
 }
 function firePulse(strength=1) {
   pulse = Math.max(pulse, strength);
@@ -160,6 +167,81 @@ function firePulse(strength=1) {
   pulseCount++;
   $('pulseVal').textContent = String(pulseCount).padStart(2,'0');
 }
+function beginGrab() {
+  const ax=handPoint.x*W, ay=handPoint.y*H;
+  const radius=Math.min(W,H)*.23;
+  const candidates=particles.map(p=>({p,d:Math.hypot(p.x-ax,p.y-ay)}))
+    .filter(item=>item.d<radius)
+    .sort((a,b)=>a.d-b.d)
+    .slice(0,110);
+  for (const item of candidates) {
+    item.p.grabbed=true;
+    item.p.grabDX=item.p.x-ax;
+    item.p.grabDY=item.p.y-ay;
+    item.p.throwFrames=0;
+  }
+  logEvent('Particles grabbed',String(candidates.length)+' NODES LINKED');
+}
+function endGrab() {
+  const vx=Math.max(-16,Math.min(16,handVelocity.x*.026));
+  const vy=Math.max(-16,Math.min(16,handVelocity.y*.026));
+  let count=0;
+  for (const p of particles) {
+    if (!p.grabbed) continue;
+    p.grabbed=false;
+    p.vx=vx+rand(-.65,.65);
+    p.vy=vy+rand(-.65,.65);
+    p.throwFrames=48;
+    count++;
+  }
+  if (count) logEvent('Particles thrown',String(count)+' NODES RELEASED');
+}
+function releaseBurst() {
+  const cx=handPoint.x*W, cy=handPoint.y*H;
+  const radius=Math.min(W,H)*.48;
+  for (const p of particles) {
+    p.grabbed=false;
+    const dx=p.x-cx, dy=p.y-cy, dist=Math.hypot(dx,dy)||1;
+    if (dist<radius) {
+      const power=7.8*Math.pow(1-dist/radius,.65)+.3;
+      p.vx+=(dx/dist)*power;
+      p.vy+=(dy/dist)*power;
+      p.throwFrames=Math.max(p.throwFrames,38);
+    }
+  }
+  firePulse(2.3);
+  logEvent('Core burst released','PARTICLE FIELD EXPANSION');
+}
+function palmPointFromLandmarks(lm) {
+  const ids=[0,5,9,13,17];
+  let x=0,y=0;
+  for (const id of ids) { x+=lm[id].x; y+=lm[id].y; }
+  x/=ids.length; y/=ids.length;
+  return {x:Math.max(.015,Math.min(.985,1-x)),y:Math.max(.025,Math.min(.975,y))};
+}
+function gestureNote(mode) {
+  return mode==='PINCH'?'Pinch locked · grab and release to throw'
+    :mode==='FIST'?'Hand closed · core compressing'
+    :mode==='OPEN HAND'?'Open palm · field linked'
+    :mode==='POINT'?'Index finger locked · beam engaged'
+    :mode==='TRACKING'?'Hand visible · gesture neutral'
+    :'Move your hand into camera view';
+}
+function showTwoHandState() {
+  $('modeBig').textContent='TWO HANDS';
+  $('modeNote').textContent='Spread your hands to expand the core';
+  $('modeChip').textContent='MODE: TWO HANDS';
+  $('coreSub').textContent='BIMANUAL ENERGY FIELD';
+  $('gestureOpen').classList.remove('active');
+  $('gesturePinch').classList.remove('active');
+  $('gestureFist').classList.remove('active');
+  $('gesturePoint').classList.remove('active');
+  $('gestureTwo').classList.add('active');
+  $('readoutTitle').textContent='Two-hand energy field';
+  $('readoutSub').textContent='Spread hands apart to expand';
+  $('handCount').textContent='02';
+}
+
 function usePointer(e) {
   pointerPoint = {x:e.clientX/W, y:e.clientY/H};
   if (mouseMode) {
@@ -188,7 +270,7 @@ async function loadHandTracker() {
       const vision = await import(base + '/vision_bundle.mjs');
       const files = await vision.FilesetResolver.forVisionTasks(base + '/wasm');
       const options = {
-        runningMode: 'VIDEO', numHands: 1, minHandDetectionConfidence: .55,
+        runningMode: 'VIDEO', numHands: 2, minHandDetectionConfidence: .55,
         minHandPresenceConfidence: .5, minTrackingConfidence: .5
       };
       try {
@@ -231,12 +313,12 @@ async function startCamera() {
     await video.play();
     if (!handLandmarker) await loadHandTracker();
     cameraActive = true; mouseMode = false; detected = false; lastVideoTime = -1; startAt = performance.now();
-    filteredLandmarks = null; candidateMode = ''; candidateModeFrames = 0; candidateModeSince = 0; handLostAt = 0; fingerExtensionState = [false,false,false,false]; pinchArmed = true; pinchReleaseFrames = 0;
+    filteredLandmarks = [null,null]; candidateMode = ''; candidateModeFrames = 0; candidateModeSince = 0; handLostAt = 0; fingerExtensionState = [false,false,false,false]; pinchArmed = true; pinchReleaseFrames = 0; lastHandSampleAt = 0; handVelocity = {x:0,y:0}; twoHandsDetected = false; twoHandSpread = 0;
     handPoint = {x:.5,y:.5}; smoothPoint = {x:.5,y:.51};
     overlay.classList.add('hidden');
     activateBtn.disabled = false; overlayActivate.disabled = false; stopBtn.disabled = false;
     $('trackingVal').textContent = 'ON'; $('handCount').textContent = '00';
-    $('bottomHint').textContent = 'Show one hand to the camera; keep it visible and well lit.';
+    $('bottomHint').textContent = 'Show one hand to control powers, or both hands to expand the core.';
     $('readoutTitle').textContent = 'Camera connected'; $('readoutSub').textContent = 'Searching for hand landmarks';
     $('modeBig').textContent = 'SEARCHING'; $('modeNote').textContent = 'Show your hand to begin';
     setStatus('CAMERA ACTIVE','ready');
@@ -267,9 +349,10 @@ function startMouseMode() {
   notify('Mouse mode active — move and click to interact.');
 }
 function stopCamera(silent=false) {
+  if (handMode==='PINCH') endGrab();
   if (cameraStream) cameraStream.getTracks().forEach(t=>t.stop());
   cameraStream = null; video.srcObject = null; cameraActive = false; detected = false;
-  filteredLandmarks = null; candidateMode = ''; candidateModeFrames = 0; candidateModeSince = 0; handLostAt = 0; fingerExtensionState = [false,false,false,false]; pinchArmed = true; pinchReleaseFrames = 0;
+  filteredLandmarks = [null,null]; candidateMode = ''; candidateModeFrames = 0; candidateModeSince = 0; handLostAt = 0; fingerExtensionState = [false,false,false,false]; pinchArmed = true; pinchReleaseFrames = 0; lastHandSampleAt = 0; handVelocity = {x:0,y:0}; twoHandsDetected = false; twoHandSpread = 0;
   stopBtn.disabled = true; activateBtn.disabled = false; overlayActivate.disabled = false;
   $('trackingVal').textContent = 'OFF'; $('handCount').textContent = '00';
   $('bottomHint').textContent = 'Camera stopped. Activate the system to resume.';
@@ -293,63 +376,63 @@ function jointAngle(a,b,c) {
   const cosine = Math.max(-1,Math.min(1,(ax*cx+ay*cy+az*cz)/(al*cl)));
   return Math.acos(cosine) * 180 / Math.PI;
 }
-function smoothLandmarks(raw) {
-  if (!filteredLandmarks || filteredLandmarks.length !== raw.length) {
-    filteredLandmarks = raw.map(p=>({x:p.x,y:p.y,z:p.z||0}));
-    return filteredLandmarks;
+function smoothLandmarks(raw, handIndex=0) {
+  if (!filteredLandmarks[handIndex] || filteredLandmarks[handIndex].length !== raw.length) {
+    filteredLandmarks[handIndex] = raw.map(p=>({x:p.x,y:p.y,z:p.z||0}));
+    return filteredLandmarks[handIndex];
   }
   // Calm tiny landmark jitter, but increase the filter response while the hand moves quickly.
   for (let i=0;i<raw.length;i++) {
-    const p=raw[i], f=filteredLandmarks[i];
+    const p=raw[i], f=filteredLandmarks[handIndex][i];
     const move=landmarkDistance(p,f);
     const alpha=Math.min(.84,.46+move*4.2);
     f.x+=(p.x-f.x)*alpha; f.y+=(p.y-f.y)*alpha; f.z+=((p.z||0)-f.z)*alpha;
   }
-  return filteredLandmarks;
+  return filteredLandmarks[handIndex];
 }
-function interpretLandmarks(raw) {
-  const lm = smoothLandmarks(raw);
+function interpretLandmarks(raw, handIndex=0) {
+  const lm = smoothLandmarks(raw,handIndex);
   handLostAt = 0;
   detected = true;
+  const nextPoint=palmPointFromLandmarks(lm);
+  const sampleNow=performance.now();
+  if (lastHandSampleAt>0) {
+    const dt=Math.max(.012,Math.min(.12,(sampleNow-lastHandSampleAt)/1000));
+    const instantX=Math.max(-1800,Math.min(1800,(nextPoint.x-handPoint.x)*W/dt));
+    const instantY=Math.max(-1800,Math.min(1800,(nextPoint.y-handPoint.y)*H/dt));
+    handVelocity.x=handVelocity.x*.48+instantX*.52;
+    handVelocity.y=handVelocity.y*.48+instantY*.52;
+  } else { handVelocity.x=0; handVelocity.y=0; }
+  previousHandPoint=handPoint;
+  handPoint=nextPoint;
+  lastHandSampleAt=sampleNow;
 
-  // Use the palm centre (wrist + four knuckles), not the index fingertip.
-  // Finger motion no longer makes the cursor jump around.
-  const palmIds=[0,5,9,13,17];
-  let palmX=0,palmY=0;
-  for (const id of palmIds) { palmX+=lm[id].x; palmY+=lm[id].y; }
-  palmX/=palmIds.length; palmY/=palmIds.length;
-  handPoint={
-    x:Math.max(.015,Math.min(.985,1-palmX)),
-    y:Math.max(.025,Math.min(.975,palmY))
-  };
+  // Beam points in the direction of the index finger, with camera mirroring applied.
+  let beamX=-(lm[8].x-lm[5].x)*W;
+  let beamY=(lm[8].y-lm[5].y)*H;
+  const beamLen=Math.hypot(beamX,beamY)||1;
+  beamDirection={x:beamX/beamLen,y:beamY/beamLen};
 
-  // Pinch uses hand-relative scale, with separate entry/exit thresholds to stop flicker.
   const palmSize=Math.max(.025,landmarkDistance(lm[0],lm[9]));
   const pinchRatio=landmarkDistance(lm[4],lm[8])/palmSize;
   const isAlreadyPinching=handMode==='PINCH' || candidateMode==='PINCH';
   const isPinching=pinchRatio < (isAlreadyPinching ? .50 : .32);
-
-  // Rearm the pulse only after a clearly released pinch has been seen for several frames.
-  // This lets one continuous pinch create exactly one pulse, even if classification jitters.
   if (pinchRatio > .60) pinchReleaseFrames++;
   else pinchReleaseFrames=0;
   if (pinchReleaseFrames >= 4) pinchArmed=true;
 
-  // Compare fingertip reach to the same finger's PIP reach from the wrist.
-  // This ratio is scale-independent and more stable than a single 2D angle.
   const fingerJoints=[[6,8],[10,12],[14,16],[18,20]];
   let extended=0;
   for (let i=0;i<fingerJoints.length;i++) {
     const [pip,tip]=fingerJoints[i];
     const pipReach=Math.max(.001,landmarkDistance(lm[0],lm[pip]));
     const reachRatio=landmarkDistance(lm[0],lm[tip])/pipReach;
-    // A small hysteresis band stops a finger from flipping state around the boundary.
     fingerExtensionState[i]=reachRatio > (fingerExtensionState[i] ? 1.075 : 1.14);
     if (fingerExtensionState[i]) extended++;
   }
-  const rawMode=isPinching ? 'PINCH' : extended>=3 ? 'OPEN HAND' : extended<=1 ? 'FIST' : 'TRACKING';
+  const isPointing=fingerExtensionState[0] && !fingerExtensionState[1] && !fingerExtensionState[2] && !fingerExtensionState[3] && !isPinching;
+  const rawMode=isPinching ? 'PINCH' : isPointing ? 'POINT' : extended>=3 ? 'OPEN HAND' : extended<=1 ? 'FIST' : 'TRACKING';
 
-  // A time-based confirmation (~70–100 ms) is steadier across different camera frame rates.
   if (rawMode===candidateMode) candidateModeFrames++;
   else { candidateMode=rawMode; candidateModeFrames=1; candidateModeSince=performance.now(); }
   const oldMode=handMode;
@@ -359,9 +442,11 @@ function interpretLandmarks(raw) {
       firePulse(1);
       pinchArmed=false;
       pinchReleaseFrames=0;
+      if (!twoHandsDetected) beginGrab();
     }
-    if (rawMode==='OPEN HAND' && oldMode==='FIST') firePulse(1.5);
-    const note=rawMode==='PINCH'?'Pinch locked · one pulse per pinch':rawMode==='FIST'?'Hand closed · core compressing':rawMode==='OPEN HAND'?'Open palm · field linked':'Hand visible · gesture neutral';
+    if (oldMode==='PINCH' && rawMode!=='PINCH') endGrab();
+    if (oldMode==='FIST' && rawMode!=='FIST') releaseBurst();
+    const note=gestureNote(rawMode);
     setMode(rawMode,note);
     logEvent('Gesture: '+rawMode,'STABLE LANDMARKS');
   }
@@ -369,24 +454,45 @@ function interpretLandmarks(raw) {
   fistStrength=activeMode==='FIST'?Math.min(1,fistStrength+.15):Math.max(0,fistStrength-.12);
   $('handCount').textContent='01';
   $('trackingVal').textContent='LIVE';
-  $('readoutTitle').textContent=activeMode==='PINCH'?'Pulse triggered':activeMode==='FIST'?'Core compression':activeMode==='OPEN HAND'?'Open hand locked':'Hand position locked';
-  $('readoutSub').textContent='Palm vector · '+extended+'/4 fingers extended · '+candidateModeFrames+' stable frames';
+  $('readoutTitle').textContent=activeMode==='PINCH'?'Particle grab active':activeMode==='FIST'?'Core compression':activeMode==='OPEN HAND'?'Open hand locked':activeMode==='POINT'?'Photon beam active':'Hand position locked';
+  $('readoutSub').textContent='Palm vector · '+extended+'/4 fingers · '+candidateModeFrames+' stable frames';
   $('coordTitle').textContent='X '+String(Math.round(handPoint.x*W)).padStart(3,'0')+' / Y '+String(Math.round(handPoint.y*H)).padStart(3,'0');
 }
 function detectHands(now) {
   if (!cameraActive || !handLandmarker || video.readyState < 2 || video.currentTime === lastVideoTime) return;
-  // Limit inference load without blocking animation frames unnecessarily.
   if (now-lastDetectAt<24) return;
   lastDetectAt=now; lastVideoTime=video.currentTime;
   try {
     const result=handLandmarker.detectForVideo(video,now);
-    if (result.landmarks && result.landmarks.length) {
-      interpretLandmarks(result.landmarks[0]);
-    } else if (detected) {
+    const hands=result.landmarks || [];
+    if (hands.length) {
+      const hadTwo=twoHandsDetected;
+      interpretLandmarks(hands[0],0);
+      if (hands.length>1) {
+        const secondLm=smoothLandmarks(hands[1],1);
+        secondHandPoint=palmPointFromLandmarks(secondLm);
+        twoHandPoint={x:(handPoint.x+secondHandPoint.x)/2,y:(handPoint.y+secondHandPoint.y)/2};
+        const separation=Math.hypot((handPoint.x-secondHandPoint.x)*W,(handPoint.y-secondHandPoint.y)*H);
+        twoHandSpread=Math.max(0,Math.min(1,separation/(Math.min(W,H)*.72)));
+        twoHandsDetected=true;
+        if (!hadTwo) logEvent('Two-hand field engaged','MOVE HANDS APART TO EXPAND');
+        showTwoHandState();
+      } else {
+        twoHandsDetected=false;
+        twoHandSpread=0;
+        filteredLandmarks[1]=null;
+        if (hadTwo) {
+          setMode(handMode,gestureNote(handMode));
+          logEvent('Two-hand field released','SINGLE HAND CONTROL');
+        }
+      }
+    } else if (detected || twoHandsDetected) {
       if (!handLostAt) handLostAt=now;
-      // Ignore one or two missed frames instead of snapping straight to the centre.
       if (now-handLostAt>240) {
-        detected=false; handCountLost();
+        if (handMode==='PINCH') endGrab();
+        if (handMode==='FIST') releaseBurst();
+        detected=false; twoHandsDetected=false; twoHandSpread=0;
+        handCountLost();
       }
     }
   } catch(err) {
@@ -394,6 +500,9 @@ function detectHands(now) {
   }
 }
 function handCountLost() {
+  if (handMode==='PINCH') endGrab();
+  if (handMode==='FIST') releaseBurst();
+  twoHandsDetected=false; twoHandSpread=0;
   $('handCount').textContent='00';
   $('trackingVal').textContent='SEARCH';
   $('readoutTitle').textContent='Hand not visible';
@@ -402,15 +511,15 @@ function handCountLost() {
     setMode('SEARCHING','Move your hand into camera view');
     logEvent('Searching for hand','NO LANDMARKS IN FRAME');
   }
-  filteredLandmarks=null; candidateMode=''; candidateModeFrames=0; candidateModeSince=0; handLostAt=0; fingerExtensionState=[false,false,false,false];
+  filteredLandmarks=[null,null]; candidateMode=''; candidateModeFrames=0; candidateModeSince=0; handLostAt=0; fingerExtensionState=[false,false,false,false]; lastHandSampleAt=0; handVelocity={x:0,y:0}; twoHandsDetected=false; twoHandSpread=0;
 }
 const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function render(now) {
   requestAnimationFrame(render);
   detectHands(now);
   ctx.clearRect(0,0,W,H);
-  const targetX=detected || mouseMode ? handPoint.x : .5;
-  const targetY=detected || mouseMode ? handPoint.y : .51;
+  const targetX=twoHandsDetected ? twoHandPoint.x : detected || mouseMode ? handPoint.x : .5;
+  const targetY=twoHandsDetected ? twoHandPoint.y : detected || mouseMode ? handPoint.y : .51;
   const targetDelta=Math.hypot(targetX-smoothPoint.x,targetY-smoothPoint.y);
   // Adaptive cursor easing: calm when still, fast when the hand makes a quick move.
   const trackingAlpha=Math.min(.72,.19+targetDelta*2.5);
@@ -418,9 +527,10 @@ function render(now) {
   smoothPoint.y+=(targetY-smoothPoint.y)*trackingAlpha;
   const cx = W*smoothPoint.x, cy = H*smoothPoint.y;
   const coreX = W*.5, coreY = H*.51;
-  const focusX = detected || mouseMode ? cx : coreX;
-  const focusY = detected || mouseMode ? cy : coreY;
-  energy += ((detected ? (handMode==='PINCH'?.96:handMode==='FIST'?.82:handMode==='OPEN HAND'?.67:.42) : mouseMode?.5:.06)-energy)*.035;
+  const focusX = twoHandsDetected ? cx : detected || mouseMode ? cx : coreX;
+  const focusY = twoHandsDetected ? cy : detected || mouseMode ? cy : coreY;
+  const energyTarget=twoHandsDetected ? .2+twoHandSpread*.78 : detected ? (handMode==='PINCH'?.96:handMode==='FIST'?.82:handMode==='POINT'?.9:handMode==='OPEN HAND'?.67:.42) : mouseMode?.5:.06;
+  energy += (energyTarget-energy)*.035;
   pulse = Math.max(0,pulse-.012);
   pulseWave = Math.max(0,pulseWave-(prefersReduced?.045:.009));
   $('energyMeter').style.width = Math.round(energy*100)+'%';
@@ -430,9 +540,9 @@ function render(now) {
   // Fine orbital vectors
   ctx.save(); ctx.translate(coreX,coreY);
   for (let j=0;j<3;j++) {
-    const rr = Math.min(W,H)*(.12+j*.075);
+    const rr = Math.min(W,H)*(.12+j*.075)*(twoHandsDetected?1+twoHandSpread*.75:1);
     ctx.beginPath(); ctx.ellipse(0,0,rr,rr*(.72+j*.05),dt*(j%2?1:-1)*(j+1),0,Math.PI*2);
-    ctx.strokeStyle = 'rgba(107,176,235,'+(0.035+j*.012+energy*.018)+')'; ctx.lineWidth=1; ctx.stroke();
+    ctx.strokeStyle = 'rgba(107,176,235,'+(0.035+j*.012+energy*.018+(twoHandsDetected?.025:0))+')'; ctx.lineWidth=1; ctx.stroke();
   }
   ctx.restore();
   const pulseR = (1-pulseWave)*Math.min(W,H)*.52;
@@ -441,30 +551,83 @@ function render(now) {
     grad.addColorStop(0,'rgba(86,220,255,0)'); grad.addColorStop(.75,'rgba(91,224,255,'+(pulseWave*.05)+')'); grad.addColorStop(1,'rgba(149,126,255,0)');
     ctx.beginPath(); ctx.arc(focusX,focusY,pulseR,0,Math.PI*2); ctx.strokeStyle=grad; ctx.lineWidth=2; ctx.stroke();
   }
+  if (twoHandsDetected) {
+    const ax=handPoint.x*W, ay=handPoint.y*H, bx=secondHandPoint.x*W, by=secondHandPoint.y*H;
+    ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(bx,by);
+    ctx.strokeStyle='rgba(122,245,255,'+(.2+twoHandSpread*.4)+')'; ctx.lineWidth=1.5; ctx.setLineDash([5,6]); ctx.stroke(); ctx.setLineDash([]);
+    for (const point of [{x:ax,y:ay},{x:bx,y:by}]) {
+      ctx.beginPath(); ctx.arc(point.x,point.y,7+twoHandSpread*6,0,Math.PI*2);
+      ctx.strokeStyle='rgba(122,245,255,.72)'; ctx.lineWidth=1.5; ctx.stroke();
+    }
+  }
+  if (detected && handMode==='POINT' && !twoHandsDetected) {
+    const beamLength=Math.min(W,H)*.58, beamWidth=Math.max(5,Math.min(W,H)*.018);
+    const ex=focusX+beamDirection.x*beamLength, ey=focusY+beamDirection.y*beamLength;
+    ctx.save(); ctx.lineCap='round';
+    ctx.shadowColor='#7af5ff'; ctx.shadowBlur=22;
+    ctx.beginPath(); ctx.moveTo(focusX,focusY); ctx.lineTo(ex,ey);
+    ctx.strokeStyle='rgba(90,165,255,.22)'; ctx.lineWidth=beamWidth*2.7; ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(focusX,focusY); ctx.lineTo(ex,ey);
+    const beamGrad=ctx.createLinearGradient(focusX,focusY,ex,ey);
+    beamGrad.addColorStop(0,'rgba(220,255,255,.98)'); beamGrad.addColorStop(.45,'rgba(122,245,255,.82)'); beamGrad.addColorStop(1,'rgba(163,139,255,.08)');
+    ctx.strokeStyle=beamGrad; ctx.lineWidth=2.2; ctx.stroke();
+    for (let k=0;k<7;k++) {
+      const t=((now*.0007+k/7)%1);
+      ctx.beginPath(); ctx.arc(focusX+beamDirection.x*beamLength*t,focusY+beamDirection.y*beamLength*t,1.1+(1-t)*1.2,0,Math.PI*2);
+      ctx.fillStyle='rgba(219,252,255,'+(1-t)*.9+')'; ctx.fill();
+    }
+    ctx.restore();
+  }
   for (let i=0;i<particles.length;i++) {
     const p=particles[i];
     const dx=focusX-p.x, dy=focusY-p.y, dist=Math.sqrt(dx*dx+dy*dy)+.001;
     const inner = Math.max(0,1-dist/(Math.min(W,H)*.38));
     const attract = .00055 + energy*.00095;
-    if (detected || mouseMode) {
-      if (handMode === 'FIST') { p.vx += dx*attract*2.8; p.vy += dy*attract*2.8; }
-      else if (handMode === 'PINCH') { p.vx += dx*attract*1.6; p.vy += dy*attract*1.6; p.vx += -dy/dist*.006; p.vy += dx/dist*.006; }
-      else { p.vx += dx*attract*inner - dy*.000004; p.vy += dy*attract*inner + dx*.000004; }
-      if (pulseWave>.01) { const force = Math.exp(-Math.pow((dist-pulseR)/25,2))*pulseWave*.8; p.vx += dx/dist*force; p.vy += dy/dist*force; }
+    if (p.grabbed && handMode==='PINCH' && !twoHandsDetected) {
+      // Locked nodes follow the palm with their original offset until the pinch opens.
+      p.x=focusX+p.grabDX; p.y=focusY+p.grabDY;
+      p.vx=handVelocity.x*.016; p.vy=handVelocity.y*.016;
     } else {
-      const ox=coreX-p.x, oy=coreY-p.y;
-      p.vx += ox*.000015; p.vy += oy*.000015;
+      if (p.grabbed) p.grabbed=false;
+      if (twoHandsDetected) {
+        const dxOut=p.x-focusX, dyOut=p.y-focusY;
+        const expand=.000015+twoHandSpread*.00011;
+        p.vx+=dxOut*expand; p.vy+=dyOut*expand;
+      } else if (detected || mouseMode) {
+        if (handMode === 'FIST') { p.vx += dx*attract*3.5; p.vy += dy*attract*3.5; }
+        else if (handMode === 'PINCH') { p.vx += dx*attract*1.2; p.vy += dy*attract*1.2; p.vx += -dy/dist*.009; p.vy += dx/dist*.009; }
+        else { p.vx += dx*attract*inner - dy*.000004; p.vy += dy*attract*inner + dx*.000004; }
+        if (handMode==='POINT') {
+          const rx=p.x-focusX, ry=p.y-focusY;
+          const along=rx*beamDirection.x+ry*beamDirection.y;
+          const across=Math.abs(rx*beamDirection.y-ry*beamDirection.x);
+          const beamLength=Math.min(W,H)*.58, beamWidth=Math.max(18,Math.min(W,H)*.055);
+          if (along>0 && along<beamLength && across<beamWidth) {
+            const influence=(1-across/beamWidth)*(1-along/beamLength);
+            p.vx+=beamDirection.x*(.42+influence*.65);
+            p.vy+=beamDirection.y*(.42+influence*.65);
+          }
+        }
+        if (pulseWave>.01) {
+          const force=Math.exp(-Math.pow((dist-pulseR)/25,2))*pulseWave*.8;
+          p.vx+=dx/dist*force; p.vy+=dy/dist*force;
+        }
+      } else {
+        const ox=coreX-p.x, oy=coreY-p.y;
+        p.vx+=ox*.000015; p.vy+=oy*.000015;
+      }
+      const drift=prefersReduced?.1:1;
+      p.vx+=Math.sin(now*.0003+p.phase)*.0025*drift;
+      p.vy+=Math.cos(now*.00025+p.phase)*.0025*drift;
+      p.vx*=.985; p.vy*=.985;
+      const vmax=p.throwFrames>0?16:2.1+energy*2.4;
+      p.vx=Math.max(-vmax,Math.min(vmax,p.vx)); p.vy=Math.max(-vmax,Math.min(vmax,p.vy));
+      p.x+=p.vx; p.y+=p.vy;
+      if (p.throwFrames>0) p.throwFrames--;
+      if (p.x < -20) p.x=W+20; if (p.x>W+20) p.x=-20;
+      if (p.y < -20) p.y=H+20; if (p.y>H+20) p.y=-20;
     }
-    const drift = prefersReduced ? .1 : 1;
-    p.vx += Math.sin(now*.0003+p.phase)*.0025*drift;
-    p.vy += Math.cos(now*.00025+p.phase)*.0025*drift;
-    p.vx *= .985; p.vy *= .985;
-    const vmax = 2.1 + energy*2.4;
-    p.vx = Math.max(-vmax,Math.min(vmax,p.vx)); p.vy = Math.max(-vmax,Math.min(vmax,p.vy));
-    p.x += p.vx; p.y += p.vy;
-    if (p.x < -20) p.x=W+20; if (p.x>W+20) p.x=-20;
-    if (p.y < -20) p.y=H+20; if (p.y>H+20) p.y=-20;
-    const glow = Math.min(1, .35+energy*.55+inner*.42+pulse*.12);
+    const glow = Math.min(1, .35+energy*.55+inner*.42+pulse*.12+(p.grabbed?.25:0));
     const hue = p.hue < .7 ? '122,245,255' : p.hue < .9 ? '99,160,255' : '174,141,255';
     ctx.beginPath(); ctx.arc(p.x,p.y,p.size*(1+inner*.7+pulse*.1),0,Math.PI*2);
     ctx.fillStyle='rgba('+hue+','+(p.alpha*glow)+')'; ctx.fill();
@@ -474,7 +637,7 @@ function render(now) {
     }
   }
   // Soft luminous core
-  const coreR = 18 + energy*16 + pulse*7;
+  const coreR = (18 + energy*16 + pulse*7)*(twoHandsDetected?1+twoHandSpread*.7:1);
   const g=ctx.createRadialGradient(focusX,focusY,0,focusX,focusY,coreR*4);
   g.addColorStop(0,'rgba(129,249,255,'+(.22+energy*.2)+')'); g.addColorStop(.2,'rgba(80,183,255,'+(.09+energy*.08)+')'); g.addColorStop(1,'rgba(90,129,255,0)');
   ctx.fillStyle=g; ctx.beginPath(); ctx.arc(focusX,focusY,coreR*4,0,Math.PI*2); ctx.fill();
@@ -491,7 +654,7 @@ activateBtn.addEventListener('click', () => { if (cameraActive) return; overlay.
 overlayMouse.addEventListener('click',startMouseMode);
 mouseBtn.addEventListener('click',startMouseMode);
 stopBtn.addEventListener('click',()=>stopCamera(false));
-$('helpBtn').addEventListener('click',()=>{overlay.classList.remove('hidden');errorLine.textContent='OPEN HAND: steer the field · PINCH: pulse · FIST: compress. Camera access begins only when you activate it.';errorLine.classList.add('show');});
+$('helpBtn').addEventListener('click',()=>{overlay.classList.remove('hidden');errorLine.textContent='OPEN HAND: steer · PINCH: grab and throw · FIST: compress, then release a burst · POINT: beam · TWO HANDS: expand the core. Camera starts only after activation.';errorLine.classList.add('show');});
 document.addEventListener('keydown',(e)=>{if(e.key==='Escape' && cameraActive) stopCamera(false); if(e.key.toLowerCase()==='m' && !e.repeat) startMouseMode();});
 </script>
 </body>
