@@ -38,7 +38,7 @@
 <video id="cam" autoplay muted playsinline></video>
 <div class="app">
 <header class="topbar">
-  <div class="brand"><div class="brand-mark" aria-hidden="true"></div><div><div class="brand-name">PHANTOM</div><div class="brand-sub">GESTURE INTERFACE / 002</div></div></div>
+  <div class="brand"><div class="brand-mark" aria-hidden="true"></div><div><div class="brand-name">PHANTOM</div><div class="brand-sub">GESTURE INTERFACE / 003</div></div></div>
   <div class="top-center"><span class="live-dot"></span><span>LOCAL PROCESSING</span><span style="color:#354760">/</span><span>VISION CORE</span></div>
   <div class="top-right"><div id="statusPill" class="status-pill"><span class="live-dot"></span><span id="statusText">SYSTEM STANDBY</span></div><button id="helpBtn" class="icon-btn" aria-label="Show controls" title="Controls"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 1 1 4.6 1.3c-1 1.1-2.2 1.3-2.2 3"/><path d="M12 17.2h.01"/></svg></button></div>
 </header>
@@ -68,7 +68,7 @@
 <footer class="bottom"><div class="bottom-left"><span class="mode-chip" id="modeChip">MODE: STANDBY</span><span class="command-hint" id="bottomHint">Initialize the system to begin gesture tracking.</span></div><div class="bottom-actions"><button id="mouseBtn" class="btn ghost" title="Use the mouse instead of a camera">↗ MOUSE TEST</button><button id="stopBtn" class="btn danger" disabled>■ STOP CAMERA</button><button id="activateBtn" class="btn primary">✦ ACTIVATE SYSTEM</button></div></footer>
 </div>
 <div id="overlay" class="overlay"><div class="welcome">
-  <div class="welcome-logo"><div class="brand-mark"></div><span class="eyebrow">INTERACTIVE FIELD EXPERIMENT / 002</span></div>
+  <div class="welcome-logo"><div class="brand-mark"></div><span class="eyebrow">INTERACTIVE FIELD EXPERIMENT / 003</span></div>
   <h1>PHANTOM</h1>
   <p class="sub">A new interface between motion and light. Use your hand to shape a living field of particles in real time.</p>
   <div class="welcome-actions"><button id="overlayActivate" class="btn primary">✦ ACTIVATE WITH CAMERA</button><button id="overlayMouse" class="btn">↗ TRY MOUSE MODE</button></div>
@@ -96,6 +96,8 @@ let W = 0, H = 0, dpr = 1, particles = [];
 let cameraStream = null, handLandmarker = null, cameraActive = false, mouseMode = false;
 let lastVideoTime = -1, lastDetectAt = 0, detected = false, handMode = 'STANDBY';
 let handPoint = {x: 0.5, y: 0.5}, smoothPoint = {x: 0.5, y: 0.5}, pointerPoint = {x: 0.5, y: 0.5};
+// Tracking stabilizers: landmark filtering, gesture hysteresis and brief hand-loss grace.
+let filteredLandmarks = null, candidateMode = '', candidateModeFrames = 0, handLostAt = 0;
 let energy = 0.06, pulse = 0, pulseCount = 0, pulseWave = 0, fistStrength = 0;
 let startAt = 0, toastTimer = 0, lastLog = '';
 const particleTarget = () => Math.min(1450, Math.max(580, Math.floor((window.innerWidth * window.innerHeight) / 1050)));
@@ -227,6 +229,8 @@ async function startCamera() {
     await video.play();
     if (!handLandmarker) await loadHandTracker();
     cameraActive = true; mouseMode = false; detected = false; lastVideoTime = -1; startAt = performance.now();
+    filteredLandmarks = null; candidateMode = ''; candidateModeFrames = 0; handLostAt = 0;
+    handPoint = {x:.5,y:.5}; smoothPoint = {x:.5,y:.51};
     overlay.classList.add('hidden');
     activateBtn.disabled = false; overlayActivate.disabled = false; stopBtn.disabled = false;
     $('trackingVal').textContent = 'ON'; $('handCount').textContent = '00';
@@ -263,6 +267,7 @@ function startMouseMode() {
 function stopCamera(silent=false) {
   if (cameraStream) cameraStream.getTracks().forEach(t=>t.stop());
   cameraStream = null; video.srcObject = null; cameraActive = false; detected = false;
+  filteredLandmarks = null; candidateMode = ''; candidateModeFrames = 0; handLostAt = 0;
   stopBtn.disabled = true; activateBtn.disabled = false; overlayActivate.disabled = false;
   $('trackingVal').textContent = 'OFF'; $('handCount').textContent = '00';
   $('bottomHint').textContent = 'Camera stopped. Activate the system to resume.';
@@ -271,51 +276,126 @@ function stopCamera(silent=false) {
   logEvent('Camera stopped','VIDEO STREAM ENDED');
   if (!silent) { overlay.classList.remove('hidden'); notify('Camera stopped.'); }
 }
-function interpretLandmarks(lm) {
-  const pinchDist = Math.hypot(lm[4].x-lm[8].x, lm[4].y-lm[8].y);
-  const extended = [8,12,16,20].filter((tip,i)=>lm[tip].y < lm[[6,10,14,18][i]].y).length;
-  const nextMode = pinchDist < .052 ? 'PINCH' : extended >= 3 ? 'OPEN HAND' : extended <= 1 ? 'FIST' : 'TRACKING';
-  const oldMode = handMode;
-  const ix = 1-lm[8].x, iy = lm[8].y;
-  handPoint = {x:Math.max(.02,Math.min(.98,ix)),y:Math.max(.02,Math.min(.98,iy))};
+function landmarkDistance(a,b) {
+  const dx = (a.x || 0) - (b.x || 0);
+  const dy = (a.y || 0) - (b.y || 0);
+  const dz = (a.z || 0) - (b.z || 0);
+  return Math.sqrt(dx*dx + dy*dy + dz*dz);
+}
+function jointAngle(a,b,c) {
+  // Angle at joint b; unlike checking tip.y, this works for rotated hands too.
+  const ax = a.x-b.x, ay = a.y-b.y, az = (a.z||0)-(b.z||0);
+  const cx = c.x-b.x, cy = c.y-b.y, cz = (c.z||0)-(b.z||0);
+  const al = Math.sqrt(ax*ax+ay*ay+az*az) || 1e-6;
+  const cl = Math.sqrt(cx*cx+cy*cy+cz*cz) || 1e-6;
+  const cosine = Math.max(-1,Math.min(1,(ax*cx+ay*cy+az*cz)/(al*cl)));
+  return Math.acos(cosine) * 180 / Math.PI;
+}
+function smoothLandmarks(raw) {
+  if (!filteredLandmarks || filteredLandmarks.length !== raw.length) {
+    filteredLandmarks = raw.map(p=>({x:p.x,y:p.y,z:p.z||0}));
+    return filteredLandmarks;
+  }
+  // Calm tiny landmark jitter, but increase the filter response while the hand moves quickly.
+  for (let i=0;i<raw.length;i++) {
+    const p=raw[i], f=filteredLandmarks[i];
+    const move=landmarkDistance(p,f);
+    const alpha=Math.min(.84,.46+move*4.2);
+    f.x+=(p.x-f.x)*alpha; f.y+=(p.y-f.y)*alpha; f.z+=((p.z||0)-f.z)*alpha;
+  }
+  return filteredLandmarks;
+}
+function interpretLandmarks(raw) {
+  const lm = smoothLandmarks(raw);
+  handLostAt = 0;
   detected = true;
-  if (nextMode === 'PINCH' && oldMode !== 'PINCH') firePulse(1);
-  if (nextMode === 'OPEN HAND' && oldMode === 'FIST') firePulse(1.5);
-  fistStrength = nextMode === 'FIST' ? Math.min(1,fistStrength+.15) : Math.max(0,fistStrength-.12);
-  const note = nextMode === 'PINCH' ? 'Pinch detected · pulse triggered' : nextMode === 'FIST' ? 'Hand closed · core compressing' : nextMode === 'OPEN HAND' ? 'Open palm · field linked' : 'Landmarks acquired';
-  if (nextMode !== oldMode) logEvent('Gesture: '+nextMode, 'VISION LANDMARKS');
-  setMode(nextMode,note);
-  $('handCount').textContent = '01';
-  $('trackingVal').textContent = 'LIVE';
-  $('readoutTitle').textContent = nextMode === 'PINCH' ? 'Pulse triggered' : nextMode === 'FIST' ? 'Core compression' : 'Hand position locked';
-  $('readoutSub').textContent = 'Index vector tracked';
-  $('coordTitle').textContent = 'X ' + String(Math.round(handPoint.x*W)).padStart(3,'0') + ' / Y ' + String(Math.round(handPoint.y*H)).padStart(3,'0');
+
+  // Use the palm centre (wrist + four knuckles), not the index fingertip.
+  // Finger motion no longer makes the cursor jump around.
+  const palmIds=[0,5,9,13,17];
+  let palmX=0,palmY=0;
+  for (const id of palmIds) { palmX+=lm[id].x; palmY+=lm[id].y; }
+  palmX/=palmIds.length; palmY/=palmIds.length;
+  handPoint={
+    x:Math.max(.015,Math.min(.985,1-palmX)),
+    y:Math.max(.025,Math.min(.975,palmY))
+  };
+
+  // Pinch scales with hand size, so it works nearer to or farther from the camera.
+  const palmSize=Math.max(.025,landmarkDistance(lm[0],lm[9]));
+  const pinchRatio=landmarkDistance(lm[4],lm[8])/palmSize;
+  const isAlreadyPinching=handMode==='PINCH' || candidateMode==='PINCH';
+  const isPinching=pinchRatio < (isAlreadyPinching ? .48 : .34);
+
+  // Count straight fingers by their joint angle in 3D, not by whether the tip is above the joint.
+  // This behaves much better when the palm is tilted or rotated.
+  const fingers=[[5,6,8],[9,10,12],[13,14,16],[17,18,20]];
+  const extended=fingers.filter(([mcp,pip,tip])=>jointAngle(lm[mcp],lm[pip],lm[tip])>148).length;
+  const openLimit=handMode==='OPEN HAND' ? 2 : 3;
+  const fistLimit=handMode==='FIST' ? 2 : 1;
+  const rawMode=isPinching ? 'PINCH' : extended>=openLimit ? 'OPEN HAND' : extended<=fistLimit ? 'FIST' : 'TRACKING';
+
+  // Require two consistent detections before changing gesture; this prevents flicker and pulse spam.
+  if (rawMode===candidateMode) candidateModeFrames++;
+  else { candidateMode=rawMode; candidateModeFrames=1; }
+  const oldMode=handMode;
+  if (candidateModeFrames>=2 && rawMode!==oldMode) {
+    if (rawMode==='PINCH' && oldMode!=='PINCH') firePulse(1);
+    if (rawMode==='OPEN HAND' && oldMode==='FIST') firePulse(1.5);
+    setMode(rawMode,rawMode==='PINCH'?'Pinch detected · pulse triggered':rawMode==='FIST'?'Hand closed · core compressing':rawMode==='OPEN HAND'?'Open palm · field linked':'Landmarks acquired');
+    logEvent('Gesture: '+rawMode,'VISION LANDMARKS');
+  }
+  const activeMode=handMode;
+  fistStrength=activeMode==='FIST'?Math.min(1,fistStrength+.15):Math.max(0,fistStrength-.12);
+  $('handCount').textContent='01';
+  $('trackingVal').textContent='LIVE';
+  $('readoutTitle').textContent=activeMode==='PINCH'?'Pulse triggered':activeMode==='FIST'?'Core compression':'Hand position locked';
+  $('readoutSub').textContent='Palm vector · '+extended+'/4 fingers extended';
+  $('coordTitle').textContent='X '+String(Math.round(handPoint.x*W)).padStart(3,'0')+' / Y '+String(Math.round(handPoint.y*H)).padStart(3,'0');
 }
 function detectHands(now) {
   if (!cameraActive || !handLandmarker || video.readyState < 2 || video.currentTime === lastVideoTime) return;
-  if (now - lastDetectAt < 24) return;
-  lastDetectAt = now; lastVideoTime = video.currentTime;
+  // Limit inference load without blocking animation frames unnecessarily.
+  if (now-lastDetectAt<24) return;
+  lastDetectAt=now; lastVideoTime=video.currentTime;
   try {
-    const result = handLandmarker.detectForVideo(video, now);
+    const result=handLandmarker.detectForVideo(video,now);
     if (result.landmarks && result.landmarks.length) {
       interpretLandmarks(result.landmarks[0]);
     } else if (detected) {
-      detected = false; $('handCount').textContent = '00'; $('trackingVal').textContent = 'SEARCH';
-      $('readoutTitle').textContent = 'Hand not visible'; $('readoutSub').textContent = 'Bring your hand into frame';
-      setMode('SEARCHING','Move your hand into camera view');
-      logEvent('Searching for hand','NO LANDMARKS IN FRAME');
+      if (!handLostAt) handLostAt=now;
+      // Ignore one or two missed frames instead of snapping straight to the centre.
+      if (now-handLostAt>240) {
+        detected=false; handCountLost();
+      }
     }
-  } catch (err) {
+  } catch(err) {
     console.warn('PHANTOM tracking frame failed',err);
   }
+}
+function handCountLost() {
+  $('handCount').textContent='00';
+  $('trackingVal').textContent='SEARCH';
+  $('readoutTitle').textContent='Hand not visible';
+  $('readoutSub').textContent='Bring your hand into frame';
+  if (handMode!=='SEARCHING') {
+    setMode('SEARCHING','Move your hand into camera view');
+    logEvent('Searching for hand','NO LANDMARKS IN FRAME');
+  }
+  filteredLandmarks=null; candidateMode=''; candidateModeFrames=0; handLostAt=0;
 }
 const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function render(now) {
   requestAnimationFrame(render);
   detectHands(now);
   ctx.clearRect(0,0,W,H);
-  smoothPoint.x += ((detected || mouseMode ? handPoint.x : .5)-smoothPoint.x)*.12;
-  smoothPoint.y += ((detected || mouseMode ? handPoint.y : .51)-smoothPoint.y)*.12;
+  const targetX=detected || mouseMode ? handPoint.x : .5;
+  const targetY=detected || mouseMode ? handPoint.y : .51;
+  const targetDelta=Math.hypot(targetX-smoothPoint.x,targetY-smoothPoint.y);
+  // Adaptive cursor easing: calm when still, fast when the hand makes a quick move.
+  const trackingAlpha=Math.min(.72,.19+targetDelta*2.5);
+  smoothPoint.x+=(targetX-smoothPoint.x)*trackingAlpha;
+  smoothPoint.y+=(targetY-smoothPoint.y)*trackingAlpha;
   const cx = W*smoothPoint.x, cy = H*smoothPoint.y;
   const coreX = W*.5, coreY = H*.51;
   const focusX = detected || mouseMode ? cx : coreX;
